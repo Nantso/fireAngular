@@ -1,0 +1,48 @@
+<div class="row">
+  <div class="col-md-5">
+    <form [formGroup]="this.customerService.form" (ngSubmit)="onSubmit()">
+      <input type="hidden" formControlName="$key">
+
+      <div class="form-group">
+        <label>Nom</label>
+        <input formControlName="nom" class="form-control" [ngClass]="{'is-invalid': submitted && formControls.nom.errors}">
+        <div class="invalid-feedback" *ngIf="submitted && formControls.nom.errors">Veuillez remplir le champ d'abord</div>
+      </div>
+
+      <div class="form-group">
+        <label>Prenom</label>
+        <input formControlName="prenom" class="form-control" >
+      </div>
+
+      <div class="form-group">
+        <label>Contact</label>
+        <input formControlName="contact" class="form-control" [ngClass]="{'is-invalid': submitted && formControls.contact.errors}">
+      <div class="invalid-feedback" *ngIf="submitted && formControls.contact.errors">
+        <label *ngIf="formControls.contact.errors.required">Veuillez remplir ce champs d'abord</label>
+        <label *ngIf="formControls.contact.errors.minLenght">Aux moins 8 caractères</label>
+      </div>
+      </div>
+
+      <div class="form-group">
+        <label>Adresse</label>
+        <input formControlName="adresse" class="form-control"  [ngClass]="{'is-invalid': submitted && formControls.adresse.errors}">
+        <div class="invalid-feedback" *ngIf="submitted && formControls.adresse.errors">Veuillez remplir le champ d'abord</div>
+      </div>
+
+      <div class="form-group">
+          <input type="submit" value="Submit" class="btn btn-primary">
+        </div>
+
+    </form> 
+    
+    <div class="alert alert-info" *ngIf="showSuccesMessage">
+      Enregistré avec succès
+    </div>
+  </div>
+
+    <div class="col-md-7">
+      
+<app-customer-list></app-customer-list>
+        
+  </div>
+</div>

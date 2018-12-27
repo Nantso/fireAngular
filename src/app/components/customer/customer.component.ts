@@ -1,0 +1,41 @@
+import { Component, OnInit } from '@angular/core';
+
+import { CustomerService } from './../../sharde/customer.service';
+
+@Component({
+  selector: 'app-customer',
+  templateUrl: './customer.component.html',
+  styleUrls: ['./customer.component.css']
+})
+export class CustomerComponent implements OnInit {
+
+  constructor(private customerService: CustomerService) { }
+  submitted: boolean;
+  showSuccesMessage: boolean;
+  formControls = this.customerService.form.controls;
+
+
+  ngOnInit() {
+  }
+
+  onSubmit() {
+    this.submitted = true;
+
+    if (this.customerService.form.valid) {
+
+      if (this.customerService.form.get('$key').value == null) {
+
+    this.customerService.addCustomer(this.customerService.form.value);
+
+      } else {
+        this.customerService.updateCustomer(this.customerService.form.value);
+      }
+
+    this.showSuccesMessage = true;
+    setTimeout( ( ) => this.showSuccesMessage = false, 3000);
+    this.submitted = false;
+
+   }
+
+  }
+}

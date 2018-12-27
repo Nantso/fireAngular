@@ -1,0 +1,24 @@
+<table class="table table-sm">
+<thead>
+  <th>Nom</th>
+  <th>Prenom</th>
+  <th>Contact</th>
+  <th>Adresse</th>
+  <th>Options</th>
+</thead>
+<ng-container *ngFor="let customer of customerArray">
+  <tr class="table-dark">
+    <td> {{customer.nom}} </td>
+    <td> {{customer.prenom}} </td>
+    <td> {{customer.contact}} </td>
+    <td> {{customer.adresse}} </td>
+    <td>
+      <button class="btn btn-outline-info" (click)="customerService.populateForm(customer)">Edit</button>
+      <button class="btn btn-outline-danger" (click)="onDelete(customer.$key)">Delete</button>
+    </td>
+  </tr>
+</ng-container>
+</table>
+<div class="alert alert-danger" *ngIf="showDeleteMessage">
+Effacer avec succès :)
+</div>
